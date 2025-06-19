@@ -2,7 +2,6 @@
 
 ## Ссылки на сайт
 - https://makas2008.github.io/diplom.github.io/ — главная страница (пользовательская)
-- [https://illilis.github.io/shfe-diplom/admin-index.html](https://illilis.github.io/shfe-diplom/admin-index.html "Административная часть") — административная часть сайта
 
 ***
 
