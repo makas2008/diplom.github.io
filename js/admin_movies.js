@@ -17,6 +17,8 @@ const inputMovieTime = document.querySelector(".add-movie_time_input");
 const inputMovieSynopsis = document.querySelector(".add-movie_synopsis_input");
 const inputMovieCountry = document.querySelector(".add-movie_country_input");
 
+inputMovieTime.addEventListener('keydown', (e) => e.key === '-' && e.preventDefault());
+
 const buttonPosterAdd = document.querySelector(".input_add_poster");
 
 let posterFile;
@@ -41,8 +43,17 @@ function addMovie(posterFile) {
     .then(function(data) {
       console.log(data);
       alert(`Фильм ${inputMovieName.value} добавлен!`);
-      location.reload();  
+      clearForm();
+      moviesOperations(data);
     })
+}
+
+function clearForm(){
+  posterFile = null;
+  popupMovieAdd.classList.add("popup__hidden");
+
+  [inputMovieName, inputMovieTime, inputMovieSynopsis, inputMovieCountry]
+  .forEach((item) => item.value = "")
 }
 
 // Удаление фильма
@@ -55,7 +66,7 @@ function deleteMovie(movieId) {
   .then(function(data) {
     console.log(data);
     alert(`Фильм ${movieId} удален!`);
-    location.reload();
+    moviesOperations(data);
   })
 }
 
@@ -101,6 +112,8 @@ movieSeancesWrapper.addEventListener("click", (e) => {
 
 function moviesOperations(data) {
   let movieCount = 1;
+
+  movieSeancesWrapper.innerHTML = '';
 
   for(let i = 0; i < data.result.films.length; i++) {
     movieSeancesWrapper.insertAdjacentHTML("beforeend", `
